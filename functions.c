@@ -7,14 +7,17 @@
  */
 char *_strcpy(char *dest, char *src)
 {
-        int i;
+	int i;
 
-        for (i = 0; src[i] != '\0'; i++)
-        {
-                dest[i] = src[i];
-        }
-        dest[i] = '\0';
-        return (dest);
+	for (i = 0; src[i] != '\0'; i++)
+
+	{
+		dest[i] = src[i];
+		}
+
+	dest[i] = '\0';
+
+	return (dest);
 }
 /**
 *_strlen - Entry point
@@ -25,12 +28,12 @@ char *_strcpy(char *dest, char *src)
 */
 int _strlen(char *s)
 {
-        int len;
+	int len;
 
-        for (len = 0; *s != '\0'; s++)
-                ++len;
+	for (len = 0; *s != '\0'; s++)
+	++len;
 
-        return (len);
+	return (len);
 }
 /**
  * _strcat  - Short description, single line
@@ -44,7 +47,7 @@ char *_strcat(char *dest, char *src)
 	return (strcat(dest, src));
 }
 /**
- * *_strdup - copies str
+ * _strdup - copies str
  * @str: duplicated str
  * Return: pointer to copied str
  */
@@ -55,7 +58,6 @@ char *_strdup(char *str)
 
 	i = 0;
 	len = 0;
-
 	if (str == NULL)
 		return (NULL);
 
@@ -72,4 +74,3 @@ char *_strdup(char *str)
 
 	return (dup);
 }
-
