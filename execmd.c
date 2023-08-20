@@ -1,14 +1,17 @@
 #include "main.h"
 void execmd(char **argv)
 {
-	char *command = NULL;
+	char *command = NULL, *actual_command = NULL;
+
 
 	if (argv)
 	{
-		//get the command
+		/*get the command*/
 		command = argv[0];
-		//execute the command with execve
-		if (execve(command, argv, NULL) == -1)
+		actual_command = get_path(command);
+
+		/*execute the command with execve*/
+		if (execve(actual_command, argv, NULL) == -1)
 		{
 			perror("Error");
 		}

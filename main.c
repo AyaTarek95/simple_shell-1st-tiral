@@ -18,18 +18,18 @@ int main(__attribute__ ((unused))int argc, char **argv)
 	char *token;
 	int i;
 
-	//create an infinite loop
+	/*create an infinite loop*/
 	while (1)
 	{
 	printf("%s", prompt);
 	nchars_read = getline(&lineptr, &n, stdin);
-	//check if getline failed or reached EOF or user cliked ctrl+d
+	/*check if getline failed or reached EOF or user clicks ctrl+d*/
 	if (nchars_read == -1)
 	{
 		printf("Exiting shell...\n");
 		return (-1);
 	}
-	//allocate space for lineptr copy
+	/*allocate space for lineptr copy*/
 	lineptr_copy = malloc(sizeof(char) * nchars_read);
 	if (lineptr_copy == NULL)
 	{
@@ -37,11 +37,11 @@ int main(__attribute__ ((unused))int argc, char **argv)
 		return (-1);
 	}
 	
-	//copy lineptr to lineptr_copy
+	/*copy lineptr to lineptr_copy*/
 	_strcpy(lineptr_copy, lineptr);
 
-	//split the line into tokens
-	//caculate no. of tokens
+	/*split the line into tokens*/
+	/*caculate no. of tokens*/
 	token = strtok(lineptr, delim);
 	while (token != NULL)
 	{
@@ -50,9 +50,9 @@ int main(__attribute__ ((unused))int argc, char **argv)
 	}
 	num_tokens++;
 	
-	//allocate memory for array of tokens
+	/*allocate memory for array of tokens*/
 	argv = malloc(sizeof(char *) * num_tokens);
-	//store every token in the argv array
+	/*store every token in the argv array*/
 	token = strtok(lineptr_copy, delim);
 
 	for (i = 0; token != NULL; i++)
@@ -64,13 +64,13 @@ int main(__attribute__ ((unused))int argc, char **argv)
 	argv[i] = NULL;
 
 
-	//execute the command
+	/*execute the command*/
 	execmd(argv);
 
 	}
 
 
-	//free lineptr
+	/*free lineptr*/
 	free(lineptr);
 	free(lineptr_copy);
 	free(argv);

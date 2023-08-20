@@ -6,7 +6,7 @@ char *get_path(char *command)
 	struct stat buffer;
 	
 		
-	path = _getenv("PATH");
+	path = getenv("PATH");
 	if (path)
 	{
 
@@ -18,10 +18,10 @@ char *get_path(char *command)
 	
 	while (path_token != NULL)
 	{
-	diretory_length = _strlen(path_token);
+	directory_length = _strlen(path_token);
 	file_path = malloc(command_length + directory_length + 2);
 	
-	_strcpy(file_path, file_token);
+	_strcpy(file_path, path_token);
 	_strcat(file_path, "/");
 	_strcat(file_path, command);
 	_strcat(file_path, "\0");
@@ -40,7 +40,7 @@ char *get_path(char *command)
 	}
 	free(path_copy);
 	
-	if (stat(command, &buffe) == 0)
+	if (stat(command, &buffer) == 0)
 	{
 	return (command);
 	}
