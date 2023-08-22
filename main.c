@@ -40,11 +40,5 @@ int main(__attribute__ ((unused))int argc, char **argv)
 		_strcpy(argv[i], token);
 		token = strtok(NULL, delim); }
 	argv[i] = NULL;
-	if (fork() == 0)
-	{
-		if (execve(argv[0], argv, NULL) == -1)
-			perror("not excuted\n");
-		exit(0); }
-		else
-		wait(NULL); }
+	execmd(argv);
 	return (0); }
