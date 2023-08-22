@@ -18,23 +18,19 @@ int main(__attribute__ ((unused))int argc, char **argv)
 	printf("%s", prompt);
 	nchars_read = getline(&lineptr, &n, stdin);
 	if (nchars_read == -1)
-	{
-		printf("Exiting shell...\n");
-		return (-1);
-	}
+	{ printf("Exiting shell...\n");
+		return (-1); }
 	lineptr_copy = malloc(sizeof(char) * nchars_read);
 	if (lineptr_copy == NULL)
 	{
 		perror("malloc failed");
-		return (-1);
-	}
+		return (-1); }
 	_strcpy(lineptr_copy, lineptr);
 	token = strtok(lineptr, delim);
 	while (token != NULL)
 	{
 		num_tokens++;
-		token = strtok(NULL, delim);
-	}
+		token = strtok(NULL, delim); }
 	num_tokens++;
 	argv = malloc(sizeof(char *) * num_tokens);
 	token = strtok(lineptr_copy, delim);
@@ -44,7 +40,11 @@ int main(__attribute__ ((unused))int argc, char **argv)
 		_strcpy(argv[i], token);
 		token = strtok(NULL, delim); }
 	argv[i] = NULL;
-	execmd(argv); }
-	free(lineptr);
-	free(lineptr_copy);
+	if (fork() == 0)
+	{
+		if (execve(argv[0], argv, NULL) == -1)
+			perror("not excuted\n");
+			exit(0); }
+		else
+		wait(NULL); }
 	return (0); }
