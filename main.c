@@ -44,7 +44,7 @@ int main(__attribute__ ((unused))int argc, char **argv)
 	{
 		if (execve(argv[0], argv, NULL) == -1)
 			perror("not excuted\n");
-			exit(0); }
+		exit(0); }
 		else
 		wait(NULL); }
 	return (0); }
